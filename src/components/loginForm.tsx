@@ -1,19 +1,19 @@
 import React , {useState} from "react";
 import '../css/loginForm.css'
 
-export default function LoginForm(loginFunction: Function, error: string) {
+export default function LoginForm( props: {loginFunction: (loginInfo: { username: string; password: string; }) => void, error: string}) {
 
     const [loginInfo, setLoginInfo] = useState({username: "", password: ""});
 
     function submitHandler(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        loginFunction(loginInfo);
+        props.loginFunction(loginInfo);
     }
 
     function renderErrorMessage() {
         return(
             <div className="errorMessage">
-                {error}
+                {props.error}
             </div>
         );
     }
@@ -22,7 +22,7 @@ export default function LoginForm(loginFunction: Function, error: string) {
         <div className="form">
             <div>
                 <h2 id="formTitle">Login to Test</h2>
-                {(error !== "") ? renderErrorMessage() : ""}
+                {(props.error !== "") ? renderErrorMessage() : ""}
             </div>
             <form onSubmit={submitHandler}>
                 <div>
@@ -57,10 +57,4 @@ export default function LoginForm(loginFunction: Function, error: string) {
             </form>
         </div>
     );
-
-
-
-
-
-
 }
