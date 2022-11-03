@@ -3,7 +3,7 @@ import "../css/toDo.css";
 import {useDispatch} from "react-redux";
 import {deleteTodo} from "../slices/todoSlice";
 
-export default function TodoItem(props: {toDo: {id: any, task: string}}) {
+export default function TodoItem(props: {toDo: {id: string, task: string}}) {
     const dispatch = useDispatch();
 
     const handleDelete = () => {

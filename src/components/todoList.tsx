@@ -13,7 +13,7 @@ export default function ToDoList() {
     return (
         <div className="toDoDisplay">
             <ul>
-                {todoList?.map((toDoItem: { id: React.Key | null | undefined; task: string }) => (
+                {todoList?.map((toDoItem: { id: string; task: string }) => (
                     <TodoItem
                         toDo={toDoItem}
                     />
