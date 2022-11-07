@@ -70,6 +70,7 @@ ul li:hover {
     cursor: pointer;
     transition: 0.2s;
     border-radius: 0;
+    border:none;
 }
 
 .addTaskButton:hover {

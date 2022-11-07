@@ -1,9 +1,12 @@
 import React , {useState} from "react";
 import '../css/loginForm.css'
+import {useNavigate} from "react-router-dom";
 
 export default function LoginForm( props: {loginFunction: (loginInfo: { username: string; password: string; }) => void, error: string}) {
 
     const [loginInfo, setLoginInfo] = useState({username: "", password: ""});
+
+    const navigate = useNavigate();
 
     function submitHandler(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -18,8 +21,20 @@ export default function LoginForm( props: {loginFunction: (loginInfo: { username
         );
     }
 
+    function gotoHome() {
+        navigate("/");
+    }
+
     return (
         <div className="form">
+            <div>
+                <button
+                    className="gotoHome"
+                    onClick={gotoHome}
+                >
+                    &#8249;
+                </button>
+            </div>
             <div>
                 <h2 id="formTitle">Login to Test</h2>
                 {(props.error !== "") ? renderErrorMessage() : ""}

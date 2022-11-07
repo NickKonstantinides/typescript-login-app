@@ -18,7 +18,7 @@ export default function ToDoForm() {
         setToDo({...toDo, task: e.target.value});
     }
 
-    function handleSubmit() {
+    function handleTaskAdd() {
         if (toDo.task.trim()) {
             dispatch(addTodo({
                 id: uuid(),
@@ -27,6 +27,19 @@ export default function ToDoForm() {
             }));
         }
         setToDo({...toDo, task: ""});
+    }
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        if (toDo.task.trim()) {
+            dispatch(addTodo({
+                id: uuid(),
+                task: toDo.task,
+                time: new Date().toLocaleString()
+            }));
+        }
+        setToDo({...toDo, task: ""});
+
     }
 
     return (
@@ -43,11 +56,9 @@ export default function ToDoForm() {
                     />
                     <span
                         className="addTaskButton"
+                        onClick={handleTaskAdd}
                     >
-                        <input
-                            className="submitTask"
-                            type="submit"
-                            />
+                        Submit
                     </span>
                 </div>
             </form>

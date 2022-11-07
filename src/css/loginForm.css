@@ -29,7 +29,22 @@
 }
 
 #formTitle {
+    float: inherit;
     margin-bottom: 20px;
+}
+
+.gotoHome {
+    size: auto;
+    border: none;
+    margin-left: 2%;
+    padding: 10px 15px;
+    position: absolute;
+    top: 5%;
+    left: 1%;
+    float: left;
+}
+.gotoHome:hover {
+    background-color: #939393;
 }
 
 

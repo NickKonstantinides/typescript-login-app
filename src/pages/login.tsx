@@ -1,45 +1,40 @@
 import React, {useState} from "react";
 import LoginForm from "../components/loginForm";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
 
     const navigate = useNavigate();
 
-    const userDatabase = [
-        {
-            name: "adminUser",
-            info: {
-                username: "admin",
-                password: "pass"
-            }
-        },
-        {
-            name: "rickroll",
-            info: {
-                username: "rick",
-                password: "roll"
-            }
-        }
-    ];
-
     const [user, setUser] = useState("");
     const [error, setError] = useState("");
 
     const LoginFunction = (loginInfo: { username: string; password: string; }) => {
-        const userData = userDatabase.find(validUser => {
-            return(validUser.info.username === loginInfo.username);
-        });
-        if (!userData || !(userData.info.username === loginInfo.username && userData.info.password === loginInfo.password)) {
-            setError("Invalid Username or Password");
-        } else {
-            setUser(loginInfo.username);
-            console.log(user);
-            if (userData.info.username === "rick") {
-                window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-            }
-            navigate("/todo");
-        }
+        axios.post("http://localhost:8080/login",
+            null,
+            {
+                params: {
+                    username: loginInfo.username,
+                    password: loginInfo.password
+                }
+            })
+            .then(function (response) {
+                if (!response.data || !(response.data.username === loginInfo.username && response.data.password === loginInfo.password)) {
+                    setError("Invalid Username or Password");
+                } else {
+                    setUser(loginInfo.username);
+                    console.log(user);
+                    if (response.data.username === "rick") {
+                        window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                    }
+                    navigate("/todo");
+                }
+            })
+            .catch(function (response) {
+                setError("There was an error!");
+                console.log(response);
+            });
     };
 
     return (
