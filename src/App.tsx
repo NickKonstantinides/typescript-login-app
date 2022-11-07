@@ -4,6 +4,7 @@ import "./css/App.css";
 import Login from "./pages/login";
 import Home from "./pages/home";
 import Todo from "./pages/todo";
+import Register from "./pages/register";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>}/>
             <Route path="/todo" element={<Todo/>} />
           </Routes>
         </Router>

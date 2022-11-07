@@ -10,6 +10,10 @@ export default function Home() {
         navigate("/login");
     }
 
+    function gotoRegister() {
+        navigate("/register");
+    }
+
     return(
         <div className="homepage">
             <h2>Welcome</h2>
@@ -20,6 +24,13 @@ export default function Home() {
                     onClick={gotoLogin}
                 >
                 Go to Login
+                </button>
+                <button
+                    className="gotoRegisterButton"
+                    type="submit"
+                    onClick={gotoRegister}
+                >
+                    Go to Register
                 </button>
             </div>
         </div>

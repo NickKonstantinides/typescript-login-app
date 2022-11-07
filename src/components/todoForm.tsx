@@ -32,7 +32,7 @@ export default function ToDoForm() {
     return (
         <div className="toDoList">
             <h2>To-Do List</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <input
                         className="addTaskText"
@@ -43,9 +43,11 @@ export default function ToDoForm() {
                     />
                     <span
                         className="addTaskButton"
-                        onClick={handleSubmit}
                     >
-                        Add Task
+                        <input
+                            className="submitTask"
+                            type="submit"
+                            />
                     </span>
                 </div>
             </form>
